@@ -1,0 +1,211 @@
+.header {
+  background-color: rgba(97, 187, 97, 1);
+  box-shadow: rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 190px;
+}
+.header h1 {
+  width: 700;
+  font-size: 56px;
+  border-bottom: 2px solid white;
+  margin: 0;
+}
+.header p {
+  font-size: 24px;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background: white;
+  width: 100%;
+  max-width: 800px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article-list {
+  display: block;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 32px;
+  text-decoration: none;
+  padding: 10px 0;
+}
+.article-description {
+  padding: 16px 0;
+  color: rgba(170, 170, 170, 1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-name {
+  color: rgba(97, 187, 97, 1);
+  margin-bottom: 2px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.user-data {
+  color: rgba(170, 170, 170, 1);
+  font-weight: 400;
+  font-size: 13px;
+}
+.like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  width: 77px;
+  height: 40px;
+  padding: 12px 20px;
+
+  border: 1px solid rgba(97, 187, 97, 1);
+  border-radius: 7px;
+
+  background-color: white;
+  color: rgba(97, 187, 97, 1);
+  cursor: pointer;
+}
+
+/*--------NAVBAR-------- */
+
+.navbar {
+  width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-text {
+  color: rgba(97, 187, 97, 1);
+  font-weight: bold;
+  font-size: 24px;
+}
+.navbar-links {
+  display: flex;
+  gap: 8px;
+}
+.navbar-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  position: relative;
+}
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -3px;
+  height: 1px;
+
+  color: rgba(97, 187, 97, 1);
+  border-bottom: 2px solid rgba(97, 187, 97, 1);
+
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.navbar-link:hover::after {
+  opacity: 1;
+}
+/*------Spinner------*/
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(97, 187, 97, 1);
+  font-size: 32px;
+}
+.spinner-icon {
+  width: 65px;
+  height: 65px;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*SIDEBAR*/
+
+.sidebar {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 16px;
+  border: 1px solid rgba(170, 170, 170, 1);
+  border-radius: 8px;
+}
+.sidebar-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sidebar-btn {
+  padding: 6px 16px;
+
+  color: rgba(170, 170, 170, 1);
+  background-color: white;
+  border-radius: 13px;
+  border: 1px solid rgba(170, 170, 170, 1);
+}
+
+/*------Pagination------*/
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.pagination-btn {
+  width: 41px;
+  height: 44px;
+  background-color: white;
+  border: 1px solid rgba(97, 187, 97, 1);
+
+  font-weight: 600;
+  color: rgba(97, 187, 97, 1);
+}
+.pagination-btn.active {
+  background-color: rgba(97, 187, 97, 1);
+  color: white;
+}

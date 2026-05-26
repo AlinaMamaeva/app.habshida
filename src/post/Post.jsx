@@ -1,0 +1,30 @@
+import UserInfo from "./UserInfo";
+import { Link } from "react-router-dom";
+import LikeBtn from "./LikeBtn";
+import Tags from "./Tags";
+export default function Post({ article }) {
+  const { title, description, body, slug, author } = article;
+
+  return (
+    <div className="post card">
+      {/*Header*/}
+      <div className="post-header">
+        <UserInfo user={author} />
+
+        <LikeBtn />
+      </div>
+
+      {/*Content*/}
+      <Link to={`/articles/${slug}`} className="article-list">
+        <p>{title}</p>
+      </Link>
+
+
+      <p className="article-description">{description}</p>
+      
+
+      {/*Footer*/}
+      <Tags tags={["tag"]} />
+    </div>
+  );
+}
