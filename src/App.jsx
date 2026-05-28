@@ -1,15 +1,16 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ArticlesList from "./pages/ArticlesList";
-import ArticlePage from "./pages/ArticlePage";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ArticlesList from './pages/ArticlesList';
+import ArticlePage from './pages/ArticlePage';
+import ProfilePage from './pages/ProfilePage';
 
-import Layout from "./layouts/Layout";
+import Layout from './layouts/Layout';
 
 //css
-import "./App.css";
+import './App.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
@@ -17,17 +18,19 @@ const router = createBrowserRouter([
         element: <ArticlesList />,
       },
       {
-        path: "articles",
+        path: 'articles',
         element: <ArticlesList />,
       },
       {
-        path: "articles/:slug",
+        path: 'articles/:slug',
         element: <ArticlePage />,
+      },
+      {
+        path: 'profile/:username',
+        element: <ProfilePage />,
       },
     ],
   },
-
-
 ]);
 
 export default function App() {

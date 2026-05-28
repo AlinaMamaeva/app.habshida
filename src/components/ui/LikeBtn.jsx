@@ -1,5 +1,5 @@
 import { useState } from "react"
-import FavoriteIcon from "../assets/favorite.svg"
+import FavoriteIcon from "../../assets/favorite.svg";
 
 export default function LikeBtn() {
 

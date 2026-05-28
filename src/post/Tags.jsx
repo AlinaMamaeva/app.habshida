@@ -1,13 +1,26 @@
-export default function Tags() {
- const tags = Array.from({ length: 9 }, (_, i) => i + 1);
-    return(
+export default function Tags({
+  isPopularTags,
+  tags = Array.from({ length: 9 }, ()=>"tag"),
+}) {
+  const content = (
+    <div className="tags">
+      {tags.map((tag, i) => (
+        <button key={i} className="tags-btn">
+          {tag}
+        </button>
+      ))}
+    </div>
+  );
 
-         <div className="tags">
-        {tags.map((tag) => (
-            <button key={tag} className="sidebar-btn">
-                tag
-            </button>
-        ))}
+  if (isPopularTags) {
+    return (
+      <div className="popular-tag">
+        <p className="popular-tag_text">Popular tags</p>
+
+        {content}
       </div>
-    )
+    );
+  }
+
+  return content;
 }

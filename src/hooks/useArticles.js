@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
 
-export  function useArticles(page) {
+  export  function useArticles(page) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

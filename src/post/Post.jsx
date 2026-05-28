@@ -1,7 +1,7 @@
-import UserInfo from "./UserInfo";
-import { Link } from "react-router-dom";
-import LikeBtn from "./LikeBtn";
-import Tags from "./Tags";
+import UserInfo from './UserInfo';
+import { Link } from 'react-router-dom';
+import LikeBtn from '../components/ui/LikeBtn';
+import Tags from './Tags';
 export default function Post({ article }) {
   const { title, description, body, slug, author } = article;
 
@@ -19,12 +19,10 @@ export default function Post({ article }) {
         <p>{title}</p>
       </Link>
 
-
       <p className="article-description">{description}</p>
-      
 
       {/*Footer*/}
-      <Tags tags={["tag"]} />
+      <Tags />
     </div>
   );
 }

@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getArticle } from "../api/api";
-import ReactMarkdown from "react-markdown";
-import Spinner from "../assets/refresh.svg";
-import UserInfo from "../post/UserInfo";
-import LikeBtn from "../post/LikeBtn";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getArticle } from '../api/api';
+import ReactMarkdown from 'react-markdown';
+import Spinner from '../assets/refresh.svg';
+import UserInfo from '../post/UserInfo';
+import LikeBtn from '../components/ui/LikeBtn';
+import ProfilePageBanner from '../components/banners/ProfilePageBanner';
+import Tags from '../post/Tags';
+import Pagination from '../components/Pagination';
+import ArticlesBanner from '../components/banners/ArticlesBanner';
+import FavoriteArticleBtn from '../components/ui/FavoriteArticleBtn';
 
 export default function ArticlePage() {
   const { slug } = useParams();
@@ -31,15 +36,19 @@ export default function ArticlePage() {
 
   return (
     <div className="container">
-      <div className="article-page card">
-        <div className="post-header">
-          <UserInfo user={article.author} />
-          <LikeBtn />
-        </div>
+      <div style={{ color: 'red' }}>Article page </div>
 
-        <p className="article-list">{article.title}</p>
+      <ArticlesBanner article={article} />
+
+      <div className="article-page ">
         <p className="article-description"> {article.description}</p>
-        <ReactMarkdown>{article.body}</ReactMarkdown>
+
+        <Tags tags={article.tags} />
+
+        <UserInfo user={article.author} />
+        <FavoriteArticleBtn />
+
+        {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}
       </div>
     </div>
   );
