@@ -40,16 +40,21 @@ export default function ArticlePage() {
 
       <ArticlesBanner article={article} />
 
-      <div className="article-page ">
-        <p className="article-description"> {article.description}</p>
+      <div className="article-page article-description-page "> 
+        <p className="article-description  " >  {article.description}</p>
 
         <Tags tags={article.tags} />
+        </div>
 
-        <UserInfo user={article.author} />
+
+       <div className='article-user'>
+         <UserInfo  user={article.author} />
         <FavoriteArticleBtn />
+       </div>
+       
 
         {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}
-      </div>
+      
     </div>
   );
 }
