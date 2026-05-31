@@ -6,7 +6,10 @@ import SettingIcon from '../assets/settingsIcon.svg';
 import ProfileIcon from '../assets/profileIcon.svg';
 
 export default function Navbar() {
-  const currentUser = null;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem('token');
+  const currentUser = !!token;
+
 
   const navLinks = [
     {
@@ -21,7 +24,7 @@ export default function Navbar() {
     },
     {
       title: 'Sign Up',
-      url: '/sign-out',
+      url: '/sign-up',
       isVisible: !currentUser,
     },
 
@@ -38,8 +41,8 @@ export default function Navbar() {
       isVisible: currentUser,
     },
     {
-      title: 'Profile',
-      url: '/profile',
+      title: user?.username || 'Profile', // <-- это доп что бы избежать андерфайнт
+      url: `/profile/${user?.username}`,
       icon: ProfileIcon,
       isVisible: currentUser,
     },
@@ -47,7 +50,10 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <h3 className="navbar-text">Realworld Blog</h3>
+      <Link to={'/'} style={{textDecoration: "none"}}>
+            <h3 className="navbar-text">Realworld Blog</h3>
+      </Link>
+
 
       <div className="navbar-links">
         {navLinks

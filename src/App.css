@@ -305,3 +305,101 @@
   gap: 16px;
   margin-top: 46px;
 }
+
+/*SIGN IN*/
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+  gap: 16px;
+
+  width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.auth-text {
+  font-size: 46px;
+  font-family: 'Titillium Web', sans-serif;
+  color: rgba(51, 51, 51, 1);
+}
+.auth-input {
+  width: 480px;
+  height: 48px;
+  border: 1px solid rgba(170, 170, 170, 1);
+  border-radius: 8px;
+  color: rgba(170, 170, 170, 1);
+  font-size: 16px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 350;
+  padding-left: 24px;
+}
+.auth-btn {
+  width: 120px;
+  height: 43px;
+  background: rgba(97, 187, 97, 1);
+  border-radius: 8px;
+  border: none;
+  font-family: 'Source Sans 3', sans-serif;
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  align-self: flex-end;
+  font-weight: 350;
+  cursor: pointer;
+}
+.auth-bio {
+  height: 100%;
+  min-height: 100px;
+  padding-top: 16px;
+}
+.auth-bio::placeholder {
+  color: rgba(51, 51, 51, 1);
+}
+
+.auth-newpost {
+  height: 100%;
+  min-height: 100px;
+  padding-top: 16px;
+  color: rgba(51, 51, 51, 1);
+}
+.auth-newpost::placeholder {
+  color: rgba(51, 51, 51, 1);
+}
+
+.setting-btn {
+  width: 144px;
+  cursor: pointer;
+}
+
+.logout-btn {
+  width: 150px;
+  height: 32px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid rgba(187, 97, 97, 1);
+  color: rgba(187, 97, 97, 1);
+  font-family: 'Source Sans 3', sans-serif;
+  align-self: self-start;
+}
+.error-text {
+  color: red;
+  font-size: 12px;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+  margin-right: 30px;
+}
+.checkbox {
+  accent-color: rgb(68, 145, 68);
+  cursor: pointer;
+}
+.checkbox-label {
+  font-size: 14px;
+  color: rgba(51, 51, 51, 1);
+  font-family: 'Source Sans 3', sans-serif;
+}

@@ -1,28 +1,46 @@
 import { Link } from 'react-router-dom';
 import ProfileIcon from '../assets/profileIcon.svg';
 
-export default function UserInfo() {
-  const user = {
-    icon: ProfileIcon,
-    userName: 'John',
-    userSureName: 'Lobster',
+export default function UserInfo({ article }) {
+ 
+  console.log('article:', article);
+
+   if (!article?.author) return null;
+  /*
+  const author = {
+    icon: article.author.image || ProfileIcon,
+    userName: article.author.username,
+
     date: new Date('2027-01-01').toLocaleDateString('en-GB', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
     }),
   };
-
+*/
   return (
     <div className="user-info">
-      <img src={user.icon} className="user-icon" />
+      <img
+        src={article.author.image || ProfileIcon}
+        className="user-icon"
+        width="50"
+        height="50"
+        alt={article.author.username}
+      />
+
       <div className="user-text">
-        <Link to={`/profile/${user.userName}`} 
-        className="user-name">
-          {user.userName} {user.userSureName}
+        <Link to={`/profile/${article.author.username}`} className="user-name">
+          {article.author.username}
         </Link>
 
-        <p className="user-data">{user.date}</p>
+        <p className="user-data">
+         
+          {new Date(article.createdAt).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </p>
       </div>
     </div>
   );

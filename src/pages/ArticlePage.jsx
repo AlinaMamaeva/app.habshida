@@ -4,12 +4,10 @@ import { getArticle } from '../api/api';
 import ReactMarkdown from 'react-markdown';
 import Spinner from '../assets/refresh.svg';
 import UserInfo from '../post/UserInfo';
-import LikeBtn from '../components/ui/LikeBtn';
-import ProfilePageBanner from '../components/banners/ProfilePageBanner';
 import Tags from '../post/Tags';
-import Pagination from '../components/Pagination';
 import ArticlesBanner from '../components/banners/ArticlesBanner';
 import FavoriteArticleBtn from '../components/ui/FavoriteArticleBtn';
+import Post from '../post/Post';
 
 export default function ArticlePage() {
   const { slug } = useParams();
@@ -40,21 +38,18 @@ export default function ArticlePage() {
 
       <ArticlesBanner article={article} />
 
-      <div className="article-page article-description-page "> 
-        <p className="article-description  " >  {article.description}</p>
+      <div className="article-page article-description-page ">
+        <p className="article-description"> {article.description}</p>
 
         <Tags tags={article.tags} />
-        </div>
-
-
-       <div className='article-user'>
-         <UserInfo  user={article.author} />
+      </div>
+  
+      <div className="article-user">
+        <UserInfo article={article} />
         <FavoriteArticleBtn />
-       </div>
-       
+      </div>
 
-        {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}
-      
+      {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}
     </div>
   );
 }

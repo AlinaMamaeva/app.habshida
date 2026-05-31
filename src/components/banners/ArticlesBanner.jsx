@@ -20,7 +20,7 @@ export default function ArticlesBanner({ article }) {
           {article.title}
         </p>
 
-        <UserInfo user={article.author} />
+        <UserInfo article={article} />
       </div>
     </div>
   );

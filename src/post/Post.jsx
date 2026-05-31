@@ -9,7 +9,7 @@ export default function Post({ article }) {
     <div className="post card">
       {/*Header*/}
       <div className="post-header">
-        <UserInfo user={author} />
+        <UserInfo article={article} />
 
         <LikeBtn />
       </div>
