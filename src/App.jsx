@@ -5,12 +5,13 @@ import ProfilePage from './pages/ProfilePage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Settings from './pages/Settings';
+import EditArticle from './pages/EditArticle';
+import NewArticle from './pages/NewArticle';
 
 import Layout from './layouts/Layout';
 
 //css
 import './App.css';
-import NewPost from './pages/NewPost';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,12 @@ const router = createBrowserRouter([
         path: 'articles/:slug',
         element: <ArticlePage />,
       },
+
+      {
+        path: 'articles/:slug/edit',
+        element: <EditArticle />,
+      },
+
       {
         path: 'profile/:username',
         element: <ProfilePage />,
@@ -46,8 +53,8 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: 'new-post',
-        element: <NewPost />,
+        path: 'new-article',
+        element: <NewArticle />,
       },
     ],
   },

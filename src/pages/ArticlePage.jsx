@@ -30,7 +30,11 @@ export default function ArticlePage() {
         loading
       </div>
     );
+
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+
   if (!article) return <p>Not Found</p>;
+  const isOwner = currentUser?.username === article?.author?.username;
 
   return (
     <div className="container">
@@ -43,10 +47,17 @@ export default function ArticlePage() {
 
         <Tags tags={article.tags} />
       </div>
-  
+
       <div className="article-user">
         <UserInfo article={article} />
-        <FavoriteArticleBtn />
+        {isOwner ? (
+          <>
+            <button>Edit</button>
+            <button>Delete</button>
+          </>
+        ) : (
+          <FavoriteArticleBtn />
+        )}
       </div>
 
       {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}

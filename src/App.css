@@ -200,8 +200,9 @@
 }
 .tags-btn {
   font-size: 12.8px;
-  width: 50px;
-  height: 20px;
+
+  min-width: 50px;
+ padding: 1px 8px;
   color: rgba(170, 170, 170, 1);
   background-color: white;
   border-radius: 8px;
@@ -366,7 +367,9 @@
 .auth-newpost::placeholder {
   color: rgba(51, 51, 51, 1);
 }
-
+.auth-tags {
+  align-self: flex-start;
+}
 .setting-btn {
   width: 144px;
   cursor: pointer;

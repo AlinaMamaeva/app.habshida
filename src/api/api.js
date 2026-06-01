@@ -9,3 +9,6 @@ export const getArticle = (slug) => {
   return axios.get(`${API}/articles/${slug}`);
 };
 
+export const getTags = () =>{
+  return axios.get(`${API}/tags`);
+};

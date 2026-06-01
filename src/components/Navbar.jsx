@@ -30,7 +30,7 @@ export default function Navbar() {
 
     {
       title: 'New Post',
-      url: '/new-post',
+      url: '/new-article',
       icon: PenIcon,
       isVisible: currentUser,
     },
