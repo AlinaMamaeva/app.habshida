@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../api/api';
-import ReactMarkdown from 'react-markdown';
 import Spinner from '../assets/refresh.svg';
 import UserInfo from '../post/UserInfo';
 import Tags from '../post/Tags';
 import ArticlesBanner from '../components/banners/ArticlesBanner';
 import FavoriteArticleBtn from '../components/ui/FavoriteArticleBtn';
-import Post from '../post/Post';
+
 
 export default function ArticlePage() {
   const { slug } = useParams();

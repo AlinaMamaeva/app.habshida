@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../api/api';
+import { useEffect } from 'react';
 
 export default function Settings() {
   const {
@@ -11,42 +13,45 @@ export default function Settings() {
   const navigate = useNavigate();
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
-    const token = localStorage.getItem('token');
-
-    const res = await fetch('https://realworld.habsida.net/api/user', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token ${token}`,
-      },
-      body: JSON.stringify({
+    try {
+      const payload = {
         user: {
           username: formData.username,
           email: formData.email,
-          bio: formData.text,
+          bio: formData.bio,
           image: formData.image,
-          password: formData.password,
+          //  password: formData.password,
         },
-      }),
-    });
-    const data = await res.json();
+      };
+      if (formData.password) {
+        payload.user.password = formData.password;
+      }
+      const { data } = await updateUser(payload);
 
-    if (data.user) {
-      localStorage.setItem('token', data.user.token);
+      // localStorage.setItem('token', data.user.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/');
-    } else {
-      console.log(data.errors);
+      reset();
+    } catch (error) {
+      console.log(error.response?.data?.errors);
     }
-    reset();
   };
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      reset({
+        username: user.username,
+        email: user.email,
+        bio: user.bio,
+        image: user.image,
+      });
+    }
+  }, []);
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/');
+    localStorage.clear();
+
+    navigate('/profile');
   };
   return (
     <>
@@ -103,17 +108,16 @@ export default function Settings() {
               message: '*Enter valid image URL',
             },
           })}
-          type="avatar"
-          accept="image/*"
+          type="text"
           className="auth-input"
           placeholder="Avatar image (URL)"
+          autoComplete="url"
         />
         {errors.image && <p className="error-text">{errors.image.message}</p>}
 
         {/* PASSWORD*/}
         <input
           {...register('password', {
-            required: '*Please enter your password',
             minLength: {
               value: 6,
               message: '*Minimum 6 characters',

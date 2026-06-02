@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm, Watch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { registerUser } from '../api/api';
 
 export default function SignUp() {
   const {
@@ -7,6 +8,7 @@ export default function SignUp() {
     handleSubmit,
     reset,
     watch,
+    setError,
     formState: { errors },
   } = useForm();
 
@@ -15,36 +17,44 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const onSubmit = async (formData) => {
-    if (formData.password !== formData.repeatPassword) {
-      alert('Password do not match');
-      return;
-    }
-
-    const res = await fetch('https://realworld.habsida.net/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    try {
+      const { data } = await registerUser({
         user: {
           username: formData.username,
           email: formData.email,
           password: formData.password,
         },
-      }),
-    });
-    const data = await res.json();
+      });
 
-    if (!res.ok) {
-      console.log(data.errors);
-      return;
+      localStorage.setItem('token', data.user.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      reset();
+      navigate('/');
+
+    } catch (error) {
+     
+      const serverErrors = error.response?.data?.errors;     //делаем универсальный catch без него вернет SQLite ошибку
+      const message = serverErrors?.body?.[0] ||   
+      error.response?.data?.error ||
+      error.message;
+
+      console.log(message);
+      if(!message) return;
+
+      if (message.includes('email')) {
+        setError('email', {
+          type: 'server',
+          message: '*Email already exist',
+        });
+      }
+      if (message.includes('username')) {
+        setError('username', {
+          type: 'server',
+          message: '*Username already exist',
+        });
+      }
     }
-
-    localStorage.setItem('token', data.user.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-
-    reset();
-    navigate('/');
   };
 
   return (

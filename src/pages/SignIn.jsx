@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { loginUser } from '../api/api';
 
 export default function SignIn() {
   const {
@@ -12,31 +13,22 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
-    const res = await fetch('https://realworld.habsida.net/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    try {
+      const { data } = await loginUser({
         user: {
           email: formData.email,
           password: formData.password,
         },
-      }),
-    });
-    const data = await res.json();
+      });
 
-    if (res.ok) {
       localStorage.setItem('token', data.user.token);
-
       localStorage.setItem('user', JSON.stringify(data.user));
+
       navigate('/');
-    } else {
-      console.log(data.errors);
+      reset();
+    } catch (error) {
+      console.log(error?.response?.data?.errors || error.message);
     }
-    reset();
   };
 
   return (
