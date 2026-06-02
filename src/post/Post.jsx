@@ -20,7 +20,7 @@ export default function Post({ article }) {
       </Link>
 
       <p className="article-description">{description}</p>
-
+       
       {/*Footer*/}
       <Tags />
     </div>

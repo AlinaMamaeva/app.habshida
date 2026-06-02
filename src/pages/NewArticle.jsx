@@ -1,8 +1,12 @@
 import { useForm } from 'react-hook-form';
+import { createArticle } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 import Tags from '../post/Tags';
 
 export default function NewArticle() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -10,9 +14,22 @@ export default function NewArticle() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (formData) => {
-    console.log(formData);
-    reset();
+  const onSubmit = async (formData) => {  
+    try {
+      const { data } = await createArticle({
+        title: formData.title,
+        description: formData.description,
+        body: formData.body,
+        tagList: [],
+      });
+
+      reset();
+      navigate(`/articles/${data.article.slug}`);
+      console.log(formData);
+    } catch (error) {
+      console.log(error.response?.data);
+    }
+  
   };
 
   return (

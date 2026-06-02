@@ -23,8 +23,8 @@ export default function UserInfo({ article }) {
       <img
         src={article.author.image || ProfileIcon}
         className="user-icon"
-        width="50"
-        height="50"
+        width="24"
+        height="24"
         alt={article.author.username}
       />
 

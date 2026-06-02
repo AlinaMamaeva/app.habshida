@@ -35,7 +35,10 @@ const router = createBrowserRouter([
         path: 'articles/:slug/edit',
         element: <EditArticle />,
       },
-
+      {
+        path: 'new-article',
+        element: <NewArticle />,
+      },
       {
         path: 'profile/:username',
         element: <ProfilePage />,

@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../api/api';
+import { Link } from 'react-router-dom';
 import Spinner from '../assets/refresh.svg';
 import UserInfo from '../post/UserInfo';
 import Tags from '../post/Tags';
 import ArticlesBanner from '../components/banners/ArticlesBanner';
 import FavoriteArticleBtn from '../components/ui/FavoriteArticleBtn';
-
+import ReactMarkdown from 'react-markdown';
+import { deleteArticle } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function ArticlePage() {
   const { slug } = useParams();
-
+const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +38,15 @@ export default function ArticlePage() {
   if (!article) return <p>Not Found</p>;
   const isOwner = currentUser?.username === article?.author?.username;
 
+  const handleDelete = async () => {
+    try {
+      await deleteArticle(slug);
+      navigate('/');
+    } catch (error) {
+      console.log(error.response?.data);
+    }
+  };
+
   return (
     <div className="container">
       <div style={{ color: 'red' }}>Article page </div>
@@ -43,23 +55,30 @@ export default function ArticlePage() {
 
       <div className="article-page article-description-page ">
         <p className="article-description"> {article.description}</p>
+        <div className="article-body">
+          {' '}
+          <ReactMarkdown>{article?.body}</ReactMarkdown>{' '}
+        </div>
 
-        <Tags tags={article.tags} />
+        <Tags tags={article.tagsList} />
       </div>
 
       <div className="article-user">
         <UserInfo article={article} />
         {isOwner ? (
-          <>
-            <button>Edit</button>
-            <button>Delete</button>
-          </>
+          <div className="update-btn">
+            <Link to={`/articles/${article.slug}/edit`} className="edit-btn">
+              Edit
+            </Link>
+            <button onClick={handleDelete} className="delete-btn">
+              {' '}
+              Delete
+            </button>
+          </div>
         ) : (
           <FavoriteArticleBtn />
         )}
       </div>
-
-      {/*<ReactMarkdown>{article.body}</ReactMarkdown> */}
     </div>
   );
 }

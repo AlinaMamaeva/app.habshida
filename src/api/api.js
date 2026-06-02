@@ -17,11 +17,7 @@ export const registerUser = (data) => {
   return axios.post(`${API}/users`, data);
 };
 export const loginUser = (data) => {
-  return axios.post(`${API}/users/login`, data, {
-    headers: {
-      Authorization: `Token ${localStorage.getItem('token')}`,
-    },
-  });
+  return axios.post(`${API}/users/login`, data);
 };
 
 export const getCurrentUser = () => {
@@ -40,7 +36,27 @@ export const updateUser = (data) => {
   });
 };
 export const createArticle = (data) => {
-  return axios.post(`${API}/articles`, data, {
+  return axios.post(
+    `${API}/articles`,
+    { article: data },
+    {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`,
+      },
+    }
+  );
+};
+
+export const updateArticle = (slug, data) => {
+  return axios.put(`${API}/articles/${slug}`, data, {
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+    },
+  });
+};
+
+export const deleteArticle = (slug) => {
+  return axios.delete(`${API}/articles/${slug}`, {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
     },
