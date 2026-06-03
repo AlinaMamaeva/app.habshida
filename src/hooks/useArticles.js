@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
-import { getArticles } from "../api/api";
+import { getArticles, getArticlesByAuthor } from "../api/api";
 
-  export  function useArticles(page) {
+  export  function useArticles(page, username) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [articlesCount, setArticlesCount] = useState(0);
  
 
   useEffect(() => {
     setLoading(true);
 
-    getArticles(page)
+const request = username ? getArticlesByAuthor(username, page) : getArticles(page)
+
+
+  request
       .then((res) => {
         setArticles(res.data.articles);
+        setArticlesCount(res.data.articlesCount);
       })
       .catch(() => {
         setError("Error loading articles");
@@ -20,10 +25,11 @@ import { getArticles } from "../api/api";
       .finally(() => {
         setLoading(false);
       });
-  }, [page]);
+  }, [page, username]);
 
   return {
     articles,
+    articlesCount,
     loading,
     error,
   };

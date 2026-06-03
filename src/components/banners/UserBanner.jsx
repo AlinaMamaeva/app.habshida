@@ -7,8 +7,14 @@ export default function UserBanner({ user, isMyProfile }) {
   return (
     <div className="profile-container">
       <div className="center">
-        <img src={ user?.image || ProfileIcon} alt="profile-icon" className="profile-icon"  width="24"
-        height="24"  />
+        <img
+          src={user?.image || ProfileIcon}
+          alt="profile-icon"
+          className="profile-icon"
+          width="24"
+          height="24"
+          style={{ borderRadius: '50%' }}
+        />
         <p className="profile-user-name">{user?.username}</p>
 
         {!isMyProfile && (

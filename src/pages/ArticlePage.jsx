@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ArticlePage() {
   const { slug } = useParams();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -49,8 +49,6 @@ const navigate = useNavigate();
 
   return (
     <div className="container">
-      <div style={{ color: 'red' }}>Article page </div>
-
       <ArticlesBanner article={article} />
 
       <div className="article-page article-description-page ">
@@ -60,7 +58,7 @@ const navigate = useNavigate();
           <ReactMarkdown>{article?.body}</ReactMarkdown>{' '}
         </div>
 
-        <Tags tags={article.tagsList} />
+        <Tags tagList={article.tagList} style={{ marginTop: '20px' }} />
       </div>
 
       <div className="article-user">

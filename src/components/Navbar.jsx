@@ -6,10 +6,9 @@ import SettingIcon from '../assets/settingsIcon.svg';
 import ProfileIcon from '../assets/profileIcon.svg';
 
 export default function Navbar() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
   const currentUser = !!token;
-
 
   const navLinks = [
     {
@@ -49,23 +48,25 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
-      <Link to={'/'} style={{textDecoration: "none"}}>
-            <h3 className="navbar-text">Realworld Blog</h3>
-      </Link>
+    <>
+      <nav className="navbar">
+        <Link to={'/'} style={{ textDecoration: 'none' }}>
+          <h3 className="navbar-text">Realworld Blog</h3>
+        </Link>
 
+        <div className="navbar-links">
+          {navLinks
+            .filter((btn) => btn.isVisible)
+            .map((btn) => (
+              <Link key={btn.title} to={btn.url} className="navbar-link">
+                {btn.icon && <img src={btn.icon} alt={btn.title} />}
 
-      <div className="navbar-links">
-        {navLinks
-          .filter((btn) => btn.isVisible)
-          .map((btn) => (
-            <Link key={btn.title} to={btn.url} className="navbar-link">
-              {btn.icon && <img src={btn.icon} alt={btn.title} />}
-
-              {btn.title}
-            </Link>
-          ))}
-      </div>
-    </nav>
+                {btn.title}
+              </Link>
+            ))}
+        </div>
+      </nav>
+      <hr className="header-line" />
+    </>
   );
 }

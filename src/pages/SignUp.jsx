@@ -59,6 +59,7 @@ export default function SignUp() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form ">
+     
       <h2 className="auth-text">Sign Up</h2>
       {/* USERNAME*/}
       <input
@@ -136,7 +137,7 @@ export default function SignUp() {
         <input
           type="checkbox"
           {...register('terms', {
-            required: 'Please confirm that everything is correct',
+            required: '*Please confirm that everything is correct',
           })}
           className="checkbox"
         />
@@ -144,8 +145,9 @@ export default function SignUp() {
           {' '}
           Yes, I agree to the Terms of Service
         </label>
+         </div>
         {errors.terms && <p className="error-text">{errors.terms.message}</p>}
-      </div>
+     
 
       <button type="submit" className="auth-btn">
         Sign Up

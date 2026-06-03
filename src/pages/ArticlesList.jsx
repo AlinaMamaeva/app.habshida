@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination';
 
 export default function ArticlesList() {
   const [page, setPage] = useState(1);
-  const { articles, loading, error } = useArticles(page);
+  const { articles, articlesCount, loading, error } = useArticles(page);
 
   if (loading)
     return (
@@ -25,7 +25,12 @@ export default function ArticlesList() {
           <Post key={article.slug} article={article} />
         ))}
       </div>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination
+        page={page}
+        setPage={setPage}
+        total={articlesCount}
+        limit={3}
+      />
     </div>
   );
 }

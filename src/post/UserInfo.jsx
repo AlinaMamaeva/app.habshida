@@ -3,21 +3,9 @@ import ProfileIcon from '../assets/profileIcon.svg';
 
 export default function UserInfo({ article }) {
  
-  console.log('article:', article);
 
    if (!article?.author) return null;
-  /*
-  const author = {
-    icon: article.author.image || ProfileIcon,
-    userName: article.author.username,
-
-    date: new Date('2027-01-01').toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-    }),
-  };
-*/
+ 
   return (
     <div className="user-info">
       <img
