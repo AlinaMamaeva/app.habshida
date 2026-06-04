@@ -74,7 +74,7 @@ export default function ArticlePage() {
             </button>
           </div>
         ) : (
-          <FavoriteArticleBtn />
+          <FavoriteArticleBtn  articleId={slug}/>
         )}
       </div>
     </div>

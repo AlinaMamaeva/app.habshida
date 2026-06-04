@@ -37,7 +37,7 @@ export default function EditArticle() {
           body: formData.body,
         },
       });
-      console.log('Updated:', data.article);
+     // console.log('Updated:', data.article);
       navigate(`/articles/${data.article.slug}`);
     } catch (error) {
       console.log(error);

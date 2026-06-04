@@ -39,7 +39,7 @@ export default function SignUp() {
       error.response?.data?.error ||
       error.message;
 
-      console.log(message);
+     // console.log(message);
       if(!message) return;
 
       if (message.includes('email')) {

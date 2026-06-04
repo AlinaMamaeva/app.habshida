@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createArticle } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
-import Tags from '../post/Tags';
-
 export default function NewArticle() {
   const navigate = useNavigate();
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
 
   const {
     register,
@@ -14,13 +15,17 @@ export default function NewArticle() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (formData) => {  
+  const handleRemoveTag = (tag) => {
+    setTags(tags.filter((t) => t != tag));
+  };
+
+  const onSubmit = async (formData) => {
     try {
       const { data } = await createArticle({
         title: formData.title,
         description: formData.description,
         body: formData.body,
-        tagList: [],
+        tagList: tags,
       });
 
       reset();
@@ -29,7 +34,6 @@ export default function NewArticle() {
     } catch (error) {
       console.log(error.response?.data);
     }
-  
   };
 
   return (
@@ -63,9 +67,44 @@ export default function NewArticle() {
       {errors.body && <p className="error-text">{errors.body.message}</p>}
 
       <div className="auth-tags">
-        <Tags limit={5} />
+        <div style={{ width: '80%', display: 'flex', gap: '8px' }}>
+          <input
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
+            placeholder="Add tag"
+            className="auth-input
+       "
+          />
+          <button
+            type="button"
+            onClick={() => {
+              const tag = tagInput.trim();
+              if (tag && !tags.includes(tag)) {
+                setTags([...tags, tag]);
+              }
+              setTagInput('');
+            }}
+            className="auth-btn"
+            style={{ height: '47px' }}
+          >
+            {' '}
+            Add{' '}
+          </button>
+        </div>
+        <div className="tags" style={{ marginTop: '15px' }}>
+          {tags.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              className="tags-btn"
+              onClick={() => handleRemoveTag(tag)}
+            >
+              {' '}
+              {tag} ✕{' '}
+            </button>
+          ))}
+        </div>
       </div>
-
       <button type="submit" className="auth-btn setting-btn">
         {' '}
         Publish Articles{' '}
