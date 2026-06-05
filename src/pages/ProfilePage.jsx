@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useArticles } from '../hooks/useArticles';
 import { getProfile } from '../api/api';
+import Spinner from '../assets/refresh.svg';
 
 export default function ProfilePage() {
   const [page, setPage] = useState(1);
@@ -17,14 +18,13 @@ export default function ProfilePage() {
   const isMyProfile = currentUser?.username === username;
 
   useEffect(() => {
-  const currentUser = JSON.parse(localStorage.getItem('user'));
-  const token = currentUser?.token;
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    const token = currentUser?.token;
 
     getProfile(username, token)
-    .then((res)=> setUser(res.data.profile))
-    .catch((err) => console.log(err))
-  }, [username])
-  
+      .then((res) => setUser(res.data.profile))
+      .catch((err) => console.log(err));
+  }, [username]);
 
   return (
     <div className="container ">
@@ -32,7 +32,10 @@ export default function ProfilePage() {
       <div></div>
       <Tags isPopularTags />
       {loading ? (
-        <p>Loading...</p>
+        <div className="spinner">
+          <img src={Spinner} alt="loading" className="spinner-icon" />
+          Loading
+        </div>
       ) : (
         articles.map((article) => <Post key={article.slug} article={article} />)
       )}

@@ -3,7 +3,6 @@ import ProfileIcon from '../../assets/profile-img.svg';
 import HeartIcon from '../../assets/Icon.svg';
 
 export default function UserBanner({ user, isMyProfile }) {
- 
   return (
     <div className="profile-container">
       <div className="center">

@@ -11,6 +11,7 @@ import ReactMarkdown from 'react-markdown';
 import { deleteArticle } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function ArticlePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
