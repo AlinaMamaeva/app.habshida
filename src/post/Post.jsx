@@ -4,7 +4,7 @@ import LikeBtn from '../components/ui/LikeBtn';
 import Tags from './Tags';
 
 export default function Post({ article }) {
-  const { title, description, body, slug, author, tagList } = article;
+  const { title, description, slug, tagList } = article;
 
   return (
     <div className="post card">

@@ -9,7 +9,6 @@ export default function EditArticle() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
-  const [tagInput, setTagInput] = useState('');
 
   const {
     register,
