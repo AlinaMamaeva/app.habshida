@@ -1,13 +1,15 @@
-import js from "@eslint/js";
-import globals from "globals";
-import { defineConfig } from "eslint/config";
-
+import js from '@eslint/js';
+import globals from 'globals';
+import { defineConfig } from 'eslint/config';
 export default defineConfig([
-  { 
-    files: ["**/*.{js,mjs,cjs,jsx}"], 
-    plugins: { js }, 
-    extends: ["js/recommended"], 
-    languageOptions: { 
+  {
+    ignores: ['dist/**', 'node_modules/**'],
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,jsx}'],
+    plugins: { js },
+    extends: ['js/recommended'],
+    languageOptions: {
       globals: globals.browser,
       parserOptions: {
         ecmaFeatures: {
@@ -16,7 +18,7 @@ export default defineConfig([
       },
     },
     rules: {
-      "no-unused-vars": "warn",
+      'no-unused-vars': 'warn',
     },
   },
 ]);
