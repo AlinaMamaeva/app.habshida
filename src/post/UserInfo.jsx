@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import ProfileIcon from '../assets/profileIcon.svg';
+import ProfileIcon from '../assets/ProfileIcon.svg';
 
 export default function UserInfo({ article }) {
- 
+  if (!article?.author) return null;
 
-   if (!article?.author) return null;
- 
   return (
     <div className="user-info">
       <img
@@ -22,7 +20,6 @@ export default function UserInfo({ article }) {
         </Link>
 
         <p className="user-data">
-         
           {new Date(article.createdAt).toLocaleDateString('en-GB', {
             day: '2-digit',
             month: 'long',

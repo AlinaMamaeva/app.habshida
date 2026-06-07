@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 //icons
 import PenIcon from '../assets/PenIcon.svg';
-import SettingIcon from '../assets/settingsIcon.svg';
-import ProfileIcon from '../assets/profileIcon.svg';
+import SettingIcon from '../assets/SettingsIcon.svg';
+import ProfileIcon from '../assets/ProfileIcon.svg';
 
 export default function Navbar() {
   const user = JSON.parse(localStorage.getItem('user'));
