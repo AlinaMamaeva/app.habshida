@@ -14,7 +14,7 @@ git clone https://github.com/AlinaMamaeva/app.habshida.git
 
 2. Navigate to the project folder
 ```bash
-cd blog-app
+cd app.habshida
 ```
 
 3. Install dependencies
