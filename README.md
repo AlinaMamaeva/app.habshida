@@ -1,4 +1,4 @@
-# 📝 App.habshida
+# 📝 Blog App.habshida
 
 A simple blog application built with React.
 
