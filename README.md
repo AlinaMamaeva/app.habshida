@@ -33,6 +33,12 @@ npm run dev
 ## 🧰 Tech Stack
 - React
 - Vite
+- Css
+- React Router
+
+
+## 🚀 Deployment
+- Vercel
   
 ## 📁 Project Structure
 ```
